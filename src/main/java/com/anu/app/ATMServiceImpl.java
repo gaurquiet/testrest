@@ -21,7 +21,7 @@ public class ATMServiceImpl implements ATMService{
 	}
 	
 	@Override
-	public Map<String, Double> withdrawAmount(String AccNbr, long amount) {
+	public Map<String, Integer> withdrawAmount(String AccNbr, long amount) {
 		// TODO Auto-generated method stub
 		Double newBal = null;
 		Double currBal = accountService.checkBalance(AccNbr);
@@ -32,9 +32,8 @@ public class ATMServiceImpl implements ATMService{
 		}else{
 			map.put("ERROR: CURRENT BALACE IS LESS THAN AMOUNT TO BE WITHDRAWN", currBal);
 		}
-		withdrawCash(amount);
-		
-		return map;
+				
+		return withdrawCash(amount).getCurrDenominator();
 	}
 	
 	public ATMDetails withdrawCash(long amount){
