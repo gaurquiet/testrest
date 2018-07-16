@@ -1,0 +1,5 @@
+1- checkout the project 
+2- do maven clean build
+3- right click the project and run as spring boot application
+4- And open http://localhost:8080/swagger-ui.html
+5- Click My Rest controller and check balance, withdraw and replenish can be done from Rest API page

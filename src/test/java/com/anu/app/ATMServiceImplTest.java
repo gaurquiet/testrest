@@ -9,8 +9,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ATMServiceImplTest {
@@ -52,6 +50,26 @@ public class ATMServiceImplTest {
         Assert.assertNull("50 note count wrong", noteMap.get("50"));
         Assert.assertNull("20 note count wrong", noteMap.get("20"));
         Assert.assertNull("10 note count wrong", noteMap.get("10"));
+        Assert.assertNull("5 note count wrong", noteMap.get("5"));
+    }
+
+    @Test
+    public void testCheckBalanceFor25(){
+        when(accountService.checkBalance("01001")).thenReturn(2000.5);
+        Map<String, Integer> noteMap = subject.withdrawAmount("01001", 25);
+        Assert.assertEquals("50 note count wrong", new Integer(0), noteMap.get("50"));
+        Assert.assertEquals("20 note count wrong", new Integer(1), noteMap.get("20"));
+        Assert.assertEquals("10 note count wrong", new Integer(0), noteMap.get("10"));
         Assert.assertEquals("5 note count wrong", new Integer(1), noteMap.get("5"));
+    }
+
+    @Test
+    public void testCheckBalanceFor60(){
+        when(accountService.checkBalance("01001")).thenReturn(2000.5);
+        Map<String, Integer> noteMap = subject.withdrawAmount("01001", 60);
+        Assert.assertEquals("50 note count wrong", new Integer(1), noteMap.get("50"));
+        Assert.assertEquals("20 note count wrong", new Integer(0), noteMap.get("20"));
+        Assert.assertEquals("10 note count wrong", new Integer(1), noteMap.get("10"));
+        Assert.assertNull("5 note count wrong", noteMap.get("5"));
     }
 }
