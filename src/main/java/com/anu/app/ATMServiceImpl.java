@@ -42,7 +42,14 @@ public class ATMServiceImpl implements ATMService {
         if (amount >= 20 && amount <= 250) {
 
             long remainingamount = amount;
-            if (amount % 50 >= 0 && currDenoMap.get("50") > 0) {
+            if(amount%5%2 ==0){
+                withdrawDenomMap.put("5", 2);
+                remainingamount = remainingamount-5*2;
+            }else{
+                withdrawDenomMap.put("5", 1);
+                remainingamount = remainingamount-5*1;
+            }
+            if (remainingamount % 50 >= 0 && currDenoMap.get("50") > 0) {
                 withdrawDenomMap.put("50", (int) (amount / 50));
                 remainingamount = remainingamount - (remainingamount / 50) * 50;
                 if (remainingamount != 0) {
@@ -64,10 +71,7 @@ public class ATMServiceImpl implements ATMService {
                         }
                     }
                 }
-            } else if (amount == amount % 50) {
-
             }
-
 
         }
         return ATMDetails.newBuilder().withCurrentDenom(withdrawDenomMap).build();
