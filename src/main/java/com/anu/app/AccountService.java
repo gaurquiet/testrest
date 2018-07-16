@@ -1,11 +1,13 @@
-package com.mkyong;
+package com.anu.app;
 
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public interface AccountService {
 
     public Double checkBalance(String AccNbr);
-    public void withdrawAmount(long amt);
-
+    
+    public Map<String, Integer> replenishATM(); 
 }

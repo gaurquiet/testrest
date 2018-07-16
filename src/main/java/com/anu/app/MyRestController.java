@@ -1,9 +1,8 @@
 /**
  * 
  */
-package com.mkyong;
+package com.anu.app;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,8 @@ public class MyRestController {
 	@Autowired
 	private AccountService accountService;
 
+	@Autowired
+	private ATMService atmService;
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String welcome() {
@@ -30,13 +31,18 @@ public class MyRestController {
 	}
 	
 	@RequestMapping(value="/checkBalance", method=RequestMethod.GET)
-	public Double checkBalance(@RequestParam String AccountNumber) {
-		return accountService.checkBalance(AccountNumber);
+	public Double checkBalance(@RequestParam String accountNumber) {
+		return accountService.checkBalance(accountNumber);
 	}
 	
-	@RequestMapping(value="/withdrawAmount", method=RequestMethod.POST)
-	public Map<String, String> withdrawAmount(@RequestParam String AccountNumber) {
-		return new HashMap<>();
+	@RequestMapping(value="/withdrawAmount", method=RequestMethod.GET)
+	public Map<String, Double> withdrawAmount(@RequestParam String accountNumber, @RequestParam long amount) {
+		return atmService.withdrawAmount(accountNumber, amount);
+	}
+	
+	@RequestMapping(value="/replenish", method=RequestMethod.GET)
+	public Map<String, Integer> replenishATM() {
+		return atmService.replenishATM();
 	}
 
 }
