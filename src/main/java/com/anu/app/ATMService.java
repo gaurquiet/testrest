@@ -12,5 +12,5 @@ import java.util.Map;
 public interface ATMService {
 	
 	public Map<String, Integer> replenishATM();
-	public Map<String, Double> withdrawAmount(String AccNbr, long amount);
+	public Map<String, Integer> withdrawAmount(String AccNbr, long amount);
 }

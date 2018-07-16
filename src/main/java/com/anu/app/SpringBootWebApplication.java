@@ -28,7 +28,7 @@ public class SpringBootWebApplication extends SpringBootServletInitializer {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()                 
-                .apis(RequestHandlerSelectors.basePackage("com.mkyong"))
+                .apis(RequestHandlerSelectors.basePackage("com.anu.app"))
                 //.paths(regex("/My.*"))
                 .build();
     }

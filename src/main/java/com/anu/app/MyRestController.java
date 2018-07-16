@@ -36,7 +36,7 @@ public class MyRestController {
 	}
 	
 	@RequestMapping(value="/withdrawAmount", method=RequestMethod.GET)
-	public Map<String, Double> withdrawAmount(@RequestParam String accountNumber, @RequestParam long amount) {
+	public Map<String, Integer> withdrawAmount(@RequestParam String accountNumber, @RequestParam long amount) {
 		return atmService.withdrawAmount(accountNumber, amount);
 	}
 	

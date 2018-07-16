@@ -56,6 +56,7 @@ public class ATMServiceImpl implements ATMService{
 									if(remainingamount != 0){
 										if(remainingamount%5 >=0 && currDenoMap.get("5")>0){
 											remainingamount = remainingamount- (remainingamount/5)*5;	
+											withdrawDenomMap.put("5", (int) (remainingamount/5));
 										}
 									}
 								}
